@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unihubcrew.unihub.mapper.ResourceMapper">
+    <select id="getAllResources" resultType="com.unihubcrew.unihub.model.Resource">
+        SELECT * FROM resources
+        <where>
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+            <if test="tag != null and tag != ''">
+                AND tag = #{tag}
+            </if>
+        </where>
+    </select>
+</mapper>

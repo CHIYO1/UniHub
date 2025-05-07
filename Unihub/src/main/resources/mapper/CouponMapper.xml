@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unihubcrew.unihub.mapper.CouponMapper">
+
+    <select id="getAllCoupons" resultType="com.unihubcrew.unihub.model.Coupon">
+        SELECT * FROM coupons
+        <where>
+            <if test="account != null and account != ''">
+                AND account = #{account}
+            </if>
+            <if test="applicableScope != null and applicableScope != ''">
+                AND applicableScope LIKE CONCAT('%', #{applicableScope}, '%')
+            </if>
+            <if test="description != null and description != ''">
+                AND description LIKE CONCAT('%', #{description}, '%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

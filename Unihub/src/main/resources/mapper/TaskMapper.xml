@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unihubcrew.unihub.mapper.TaskMapper">
+
+    <select id="getAllTasks" resultType="com.unihubcrew.unihub.model.Task">
+        SELECT * FROM tasks
+        <where>
+            <if test="id != null and id != ''">
+                AND task_id = #{id}
+            </if>
+            <if test="targetScope != null and targetScope != ''">
+                AND target_scope LIKE CONCAT('%', #{targetScope}, '%')
+            </if>
+            <if test="content != null and content != ''">
+                AND content LIKE CONCAT('%', #{content}, '%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

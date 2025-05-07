@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unihubcrew.unihub.mapper.FollowMapper">
+
+    <select id="getAllFollows" resultType="com.unihubcrew.unihub.model.Follow">
+        SELECT
+            follow_id AS id,
+            follower_id AS followerId,
+            followed_id AS followedId,
+            follow_time AS followedTime
+        FROM follows
+        <where>
+            <if test="followerId != null and followerId != ''">
+                AND follower_id = #{followerId}
+            </if>
+            <if test="followedId != null and followedId != ''">
+                AND followed_id = #{followedId}
+            </if>
+        </where>
+    </select>
+
+</mapper>
